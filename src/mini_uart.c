@@ -1,8 +1,9 @@
 #include "utils.h"
-#include "uart.h"
-#include "gpio.h"
+#include "mini_uart.h"
+#include "p_uart.h"
+#include "p_gpio.h"
 
-void uart_init ( void )
+void mini_uart_init ( void )
 {
     unsigned int selector;
 
@@ -29,7 +30,7 @@ void uart_init ( void )
     put32(AUX_MU_CNTL_REG, 3);               //Finally, enable transmitter and receiver
 }
 
-void uart_send ( char c )
+void mini_uart_send ( char c )
 {
     // while until transmit FIFO can accept at least one bytes
 	while(1) {
@@ -40,7 +41,7 @@ void uart_send ( char c )
 	put32(AUX_MU_IO_REG,c);
 }
 
-char uart_recv ( void )
+char mini_uart_recv ( void )
 {
     // loop until receive FIFO holds at least 1 symbol
 	while(1) {
@@ -51,9 +52,9 @@ char uart_recv ( void )
 	return(get32(AUX_MU_IO_REG)&0xFF);
 }
 
-void uart_send_string(char* str)
+void mini_uart_send_string(char* str)
 {
 	for (int i = 0; str[i] != '\0'; i ++) {
-		uart_send((char)str[i]);
+		mini_uart_send((char)str[i]);
 	}
 }

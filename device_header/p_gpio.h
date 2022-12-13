@@ -1,7 +1,7 @@
-#ifndef _GPIO_H
-#define _GPIO_H
+#ifndef _P_GPIO_H
+#define _P_GPIO_H
 
-#include "base.h"
+#include "p_base.h"
 
 #define         GPFSEL1             (GPIO_BASE + 0x4)
 #define 		GPSET0          	(GPIO_BASE + 0x1C)
@@ -10,4 +10,4 @@
 #define         GPPUDCLK0           (GPIO_BASE + 0x98)
 
 
-#endif /* _GPIO_H */
+#endif /* _P_GPIO_H */
