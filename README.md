@@ -1,1 +1,1 @@
-# raspi_bare_metal
+# Build a linux kernel for Raspberry Pi from Zero
