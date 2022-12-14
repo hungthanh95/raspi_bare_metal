@@ -25,6 +25,5 @@
 #define         UART_LCRH           (UART_BASE + 0x2c)
 #define         UART_CR             (UART_BASE + 0x30)
 
-#define         UART_REF_CLK        48000000
-#define         UART_BAUDRATE       115200
+
 #endif /* _UART_H */

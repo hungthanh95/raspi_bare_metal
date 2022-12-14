@@ -3,7 +3,7 @@
 #include "p_uart.h"
 #include "p_gpio.h"
 
-void mini_uart_init ( void )
+void mini_uart_init ( unsigned int baud )
 {
     unsigned int selector;
 
@@ -25,7 +25,8 @@ void mini_uart_init ( void )
     put32(AUX_MU_IER_REG, 0);                //Disable receive and transmit interrupts
     put32(AUX_MU_LCR_REG, 3);                //Enable 8 bit mode
     put32(AUX_MU_MCR_REG, 0);                //Set RTS line to be always high
-    put32(AUX_MU_BAUD_REG, 270);             //Set baud rate to 115200
+    unsigned int baud_reg = (unsigned int) ( ( SYS_CLK_FREQ / baud ) / 8 ) - 1;
+    put32(AUX_MU_BAUD_REG, baud_reg);             //Set baud rate to 115200
 
     put32(AUX_MU_CNTL_REG, 3);               //Finally, enable transmitter and receiver
 }

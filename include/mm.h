@@ -10,9 +10,14 @@
 
 #define LOW_MEMORY              (2 * SECTION_SIZE)
 
+#define STACK_OFFSET            1 << 10 // 1kb
+
 #ifndef __ASSEMBLER__
 
+int get_core_id();
 void memzero(unsigned long src, unsigned long n);
+void init_memory(unsigned long begin, unsigned long end);
+void init_stack(unsigned int core_id);
 
 #endif
 

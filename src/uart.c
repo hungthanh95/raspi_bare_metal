@@ -3,7 +3,7 @@
 #include "p_uart.h"
 #include "p_gpio.h"
 
-void uart_init ( void )
+void uart_init ( unsigned int baud )
 {
     unsigned int selector;
 
@@ -22,7 +22,7 @@ void uart_init ( void )
 
     // calculate integer and fractional
     // 64 * UART_CLK / (16 * BAUDRATE) = 4 * UARTLCK / BAUDRATE
-    unsigned int div = 4 * UART_REF_CLK / UART_BAUDRATE;
+    unsigned int div = 4 * UART_REF_CLK / baud;
     put32(UART_IBRD, ((div >> 6) & 0xffff));
     put32(UART_FBRD, (div & 0x3f));
 
