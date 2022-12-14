@@ -17,7 +17,7 @@ LINK_DIR = linker
 ASM_DIR = asm
 SRC_DIR = src
 
-all : kernel8.img
+all : kernel8.img kernel-qemu.img
 
 clean :
 	rm -rf $(BUILD_DIR) *.img
@@ -43,3 +43,7 @@ DEP_FILES = $(OBJ_FILES:%.o=%.d)
 kernel8.img: $(LINK_DIR)/linker.ld $(OBJ_FILES)
 	$(ARMGNU)-ld -T $(LINK_DIR)/linker.ld -o $(BUILD_DIR)/kernel8.elf  $(OBJ_FILES)
 	$(ARMGNU)-objcopy $(BUILD_DIR)/kernel8.elf -O binary kernel8.img
+
+kernel-qemu.img: $(LINK_DIR)/linker-qemu.ld $(OBJ_FILES)
+	$(ARMGNU)-ld -T $(LINK_DIR)/linker-qemu.ld -o $(BUILD_DIR)/kernel-qemu.elf $(OBJ_FILES)
+	$(ARMGNU)-objcopy $(BUILD_DIR)/kernel-qemu.elf -O binary kernel-qemu.img
